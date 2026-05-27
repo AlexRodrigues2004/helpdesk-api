@@ -1,4 +1,4 @@
- Helpdesk API
+# 🎫 Helpdesk API
 
 API RESTful para gestão de chamados técnicos, desenvolvida com Django, Django Rest Framework, PostgreSQL, Docker e CI/CD.
 
@@ -8,7 +8,7 @@ API RESTful para gestão de chamados técnicos, desenvolvida com Django, Django 
 
 ## 📋 Tecnologias
 
-- Python 3.12
+- Python 3.11
 - Django 5.0
 - Django Rest Framework 3.15
 - PostgreSQL 15
@@ -26,11 +26,16 @@ API RESTful para gestão de chamados técnicos, desenvolvida com Django, Django 
   - Settings com DRF, TokenAuthentication, paginação e filtros configurados
   - `.env`, `.gitignore` e `requirements.txt`
 
+- [x] **Etapa 2 — Docker** (`feat/docker-setup`)
+  - `Dockerfile` com Python 3.11
+  - `docker-compose.yml` com serviços `web` e `db` (PostgreSQL 15)
+  - Healthcheck no banco para garantir ordem de inicialização
+  - Migrations executadas automaticamente ao subir o container
+
 ---
 
 ## 🔜 Próximas etapas
 
-- [ ] **Etapa 2 — Docker** (`feat/docker-setup`): Dockerfile + docker-compose.yml
 - [ ] **Etapa 3 — Models** (`feat/models-and-migrations`): Models e migrations de todos os apps
 - [ ] **Etapa 4 — Serializers** (`feat/serializers`): Serializers com validações
 - [ ] **Etapa 5 — Auth e Permissões** (`feat/auth-and-permissions`): Token auth, perfis, permissões
@@ -39,6 +44,43 @@ API RESTful para gestão de chamados técnicos, desenvolvida com Django, Django 
 - [ ] **Etapa 8 — CI** (`feat/ci-pipeline`): GitHub Actions
 - [ ] **Etapa 9 — CD** (`feat/cd-strategy`): Deploy no Render
 - [ ] **Etapa 10 — Documentação** (`feat/documentation`): README completo + Swagger
+
+---
+
+## 🚀 Como rodar localmente com Docker
+
+### Pré-requisitos
+- Docker Desktop instalado e rodando
+
+### Passos
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/AlexRodrigues2004/helpdesk-api.git
+cd helpdesk-api
+```
+
+2. Copie o arquivo de variáveis de ambiente:
+```bash
+cp .env.example .env
+```
+
+3. Suba os containers:
+```bash
+docker compose up --build
+```
+
+4. Acesse a aplicação em http://localhost:8000
+
+### Parar os containers
+```bash
+docker compose down
+```
+
+### Parar e remover volumes
+```bash
+docker compose down -v
+```
 
 ---
 
@@ -55,8 +97,13 @@ helpdesk-api/
 │   ├── urls.py
 │   ├── wsgi.py
 │   └── asgi.py
+├── .github/
+│   └── workflows/
+│       └── ci.yml      # (Etapa 8)
 ├── .env
 ├── .gitignore
+├── docker-compose.yml
+├── Dockerfile
 ├── manage.py
 ├── requirements.txt
 └── README.md
