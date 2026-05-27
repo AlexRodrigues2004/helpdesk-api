@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Interaction
 
-# Register your models here.
+
+@admin.register(Interaction)
+class InteractionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'ticket', 'user', 'created_at')
+    search_fields = ('message',)
